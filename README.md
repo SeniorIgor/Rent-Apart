@@ -1,6 +1,6 @@
 # RENT-APART
 
-![main-page](https://github.com/SeniorIgor/Rent-Apart/main-page-for-readme.png)
+![main-page](https://github.com/SeniorIgor/Rent-Apart/blob/master/main-page-for-readme.png)
 
 Данное веб-приложение построено на Angular и осуществляет взаимодействие с БД WebSQL.  
 Так же приложение Rent-Apart использует асинхронные запросы HTTP для получения модели данных, предоставляемой REST-совместимой веб-службой.  
