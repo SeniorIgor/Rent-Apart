@@ -1,0 +1,82 @@
+<catalog-summary></catalog-summary>
+<div class="m-a-1 m-b-2">
+    <h2 class="text-xs-center text-primary">Задать вопрос</h2>
+</div>
+
+
+<form #form="ngForm" novalidate (ngSubmit)="submitForm(form)" class="m-a-1">
+
+    <div class="container">
+            <div class="form-row">
+                    <div class="col-lg-1 col-xl-2"></div>
+                    <div class="form-group col-lg-10 col-xl-8">
+                        <div class="row">
+                                <div class="myFont form-group col-md-6">
+                                    <label class="text-success h5">Имя</label>
+                                    <input type="text" class="form-control" #fieldName="ngModel" name="fieldName" placeholder="Введите имя"
+                                        [(ngModel)]="name" 
+                                        required
+                                        maxlength="15"
+                                        pattern="^[А-Яа-яЁё\s\-]+$">
+                                    <ul class="text-danger list-unstyled" 
+                                            *ngIf="(submitted || fieldName.dirty) && fieldName.invalid">
+                                        <li *ngFor="let error of getValidationMessages(fieldName, 'имя')">
+                                            {{error}}
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="form-group col-md-6 myFont">
+                                    <label class="text-success h5">Email</label>
+                                    <input class="form-control myInputHover" #emailAddress="ngModel" name="emailAddress" type="email" placeholder="Введите email"
+                                        [(ngModel)]="emailField" 
+                                        required
+                                        minlength="10"
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"/>
+                                    <ul class="text-danger list-unstyled" 
+                                                *ngIf="submitted && emailAddress.invalid">
+                                        <li *ngFor="let error of getValidationMessages(emailAddress, 'электронная почта')">
+                                            {{error}}
+                                        </li>
+                                    </ul>
+                                </div>
+                        </div>
+                        <div class="form-group myFont">
+                                <label class="text-success h5">Заголовок</label>
+                                    <input class="form-control myInputHover" #title="ngModel" name="title" type="text" placeholder="Введите заголовок"
+                                        [(ngModel)]="titleField" 
+                                        required
+                                        maxlength="40"
+                                        pattern="^[А-Яа-яЁё\s\-]+$"/>
+                                    <ul class="text-danger list-unstyled" 
+                                                *ngIf="submitted && title.invalid">
+                                        <li *ngFor="let error of getValidationMessages(title, 'заголовок')">
+                                            {{error}}
+                                        </li>
+                                    </ul>
+                        </div>
+                        <div class="form-group myFont">
+                                <label for="message" class="text-success h5">Текст вопроса</label>
+                                <textarea id="message" class="form-control myInputHover" rows="5" #textQuestion="ngModel" name="textQuestion" type="text" placeholder="Введите сообщение" 
+                                    [(ngModel)]="textquestion" 
+                                    required
+                                    maxlength="800"></textarea>
+                                <ul class="text-danger list-unstyled" 
+                                                *ngIf="submitted && textQuestion.invalid">
+                                        <li *ngFor="let error of getValidationMessages(textQuestion, 'текст вопроса')">
+                                            {{error}}
+                                        </li>
+                                </ul>
+                        </div>
+
+                        <div class="text-md-right">
+                                <button type="submit" id="form-submit" class="btn btn-primary pull-right" [disabled]="submitted && form.invalid" 
+                                        [class.btn-secondary]="submitted && form.invalid">
+                                        <span class="h6">Отправить</span>
+                                </button>
+                        </div>            
+                            
+                    </div>
+                    <div class="col-lg-1 col-xl-2"></div>
+            </div>
+    </div>
+</form>

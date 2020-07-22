@@ -1,0 +1,295 @@
+<!-- <div class="navbar navbar-inverse bg-success">
+    <a class="myHeaders navbar-brand nav-link myLink" routerLink="/cart" href="">RENT APART</a>
+    <button class="btn myLinks" routerLink="/store">
+        <span class="font-weight-bolder">КАТАЛОГ</span>
+    </button>
+    <!-- <button class="btn btn-secondary text-primary" type="button" routerLink="/cart">RENT APART</button> -->
+<!-- </div> -->
+<catalog-summary></catalog-summary>
+<div *ngIf="!filterSent" class="m-a-1 m-b-2">
+    <h2 class="text-xs-center text-primary">Форма</h2>
+</div>
+
+<div *ngIf="filterSent" class="col-xs-12 p-a-1 m-t-1 alert alert-success" role="alert">
+        <h4 class="alert-heading">Спасибо!</h4>
+        <p>Ваше обращение зарегистировано!</p>
+            <hr>
+        <p class="mb-0">Мы свяжемся с вами и предложим наши лучшие варианты</p>
+
+        <button class="btn btn-success" routerLink="/store">Вернуться к объявлениям</button>
+</div>
+
+<!-- <div *ngIf="filterSent">
+        <h2>Спасибо!</h2>
+        <p>Ваше обращение зарегистировано!</p>
+        <p>Мы предложим вам наши лучшие варианты</p>
+        <button class="btn btn-primary" routerLink="/store">Вернуться к объявлениям</button>
+</div> -->
+
+
+<form *ngIf="!filterSent" #form="ngForm" novalidate
+      (ngSubmit)="submitForm(form)" class="m-a-1">
+   
+    <div class="myFont">
+        <div class="form-row">
+            <div class="col-md-2 col-xl-3"></div>
+            <div class="form-group col-md-8 col-xl-6">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="formControlSelect" class="text-success h5">Категория<sup>*</sup></label>
+                        <select class="form-control myInputHover" id="formControlSelect"
+                                #category="ngModel" name="category"
+                                [(ngModel)]="filter.category" 
+                                required>
+                            <option value="Квартира">Квартира</option>
+                            <option value="Комната">Комната</option>
+                        </select>
+                        <ul class="text-danger list-unstyled" 
+                                *ngIf="(submitted || category.dirty) && category.invalid">
+                            <li *ngFor="let error of getValidationMessages(category, 'категория')">
+                                {{error}}
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="text-success h5">Ремонт</label>
+                        <select class="form-control myInputHover"
+                                #repairs="ngModel" name="repairs"
+                                [(ngModel)]="filter.repairs">
+                            <option value="null" selected>Не выбрано</option>
+                            <option value="Без ремонта">Без ремонта</option>
+                            <option value="Косметический">Косметический</option>
+                            <option value="Евроремонт">Евроремонт</option>
+                            <option value="Дизайнерский">Дизайнерский</option>
+                        </select>
+                        <ul class="text-danger list-unstyled" 
+                                *ngIf="(submitted || repairs.dirty) && repairs.invalid">
+                            <li *ngFor="let error of getValidationMessages(repairs, 'ремонт')">
+                                {{error}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row">
+                        <div class="form-group col-md-6">
+                                <label class="text-success h5">Минимальная цена</label>
+                                <input class="form-control myInputHover" #minPrice="ngModel" name="minPrice"
+                                    [(ngModel)]="filter.minPrice" 
+                                    maxlength="10"
+                                    pattern="^[0-9\.]+$"/>
+                            
+                                <ul class="text-danger list-unstyled" 
+                                        *ngIf="(submitted || minPrice.dirty) && minPrice.invalid">
+                                    <li *ngFor="let error of getValidationMessages(minPrice, 'мин. цена')">
+                                        {{error}}
+                                    </li>
+                                </ul>
+                        </div>
+                        <div class="form-group col-md-6">
+                                <label class="text-success h5">Максимальная цена</label>
+                                <input class="form-control myInputHover" #maxPrice="ngModel" name="maxPrice"
+                                    [(ngModel)]="filter.maxPrice" 
+                                    maxlength="10"
+                                    pattern="^[0-9\.]+$"/>
+                            
+                                <ul class="text-danger list-unstyled" 
+                                        *ngIf="(submitted || maxPrice.dirty) && maxPrice.invalid">
+                                    <li *ngFor="let error of getValidationMessages(maxPrice, 'макс. цена')">
+                                        {{error}}
+                                    </li>
+                                </ul>
+                        </div>
+                </div>
+
+                <div class="row">
+                        <div class="form-group col-md-12">
+                                <label class="text-success h5">Местоположение<sup>*</sup></label>
+                                <input class="form-control myInputHover" #city="ngModel" name="city"
+                                    placeholder="Введите город"
+                                    [(ngModel)]="filter.city" 
+                                    required
+                                    maxlength="25"
+                                    pattern="^[А-Яа-яЁё\s\-]+$"/>
+                                <ul class="text-danger list-unstyled" 
+                                        *ngIf="(submitted || city.dirty) && city.invalid">
+                                    <li *ngFor="let error of getValidationMessages(city, 'местоположение')">
+                                        {{error}}
+                                    </li>
+                                </ul>
+                        </div>
+                </div>
+
+                <div *ngIf="filter.city == ('Москва' || 'москва')" class="row">
+                        <div class="form-group col-md-12">
+                                <label class="text-success h5">Метро</label>
+                                <select class="form-control myInputHover"
+                                        #undeground="ngModel" name="undeground"
+                                        [(ngModel)]="filter.undeground">
+                                    <option value="null" selected>Не выбрано</option>
+                                    <option value="Алтуфьево">Алтуфьево</option>
+                                    <option value="Белорусская">Белорусская</option>
+                                    <option value="Бибирево">Бибирево</option>
+                                    <option value="Войкоская">Войковская</option>
+                                    <option value="Добрынинская">Добрынинская</option>
+                                    <option value="Отрадное">Отрадное</option>
+                                    <option value="Каширская">Каширская</option>
+                                    <option value="Марьина роща">Марьина роща</option>
+                                    <option value="Менделеевская">Менделеевская</option>
+                                    <option value="Нижегородская">Нижегородская</option>
+                                    <option value="Новослободская">Новослободская</option>
+                                    <option value="Полежаевская">Полежаевская</option>
+                                    <option value="Преображенская площадь">Преображенская площадь</option>
+                                    <option value="Планерная">Планерная</option>
+                                    <option value="Театральная">Театральная</option>
+                                    <option value="Цветной бульвар">Цветной бульвар</option>
+                                    
+                                </select>
+                                <ul class="text-danger list-unstyled" 
+                                        *ngIf="(submitted || undeground.dirty) && undeground.invalid">
+                                    <li *ngFor="let error of getValidationMessages(undeground, 'метро')">
+                                        {{error}}
+                                    </li>
+                                </ul>
+                        </div>
+                </div>
+
+                <div class="row">
+                        <div class="form-group col-md-4">
+                                <label class="text-success h5">Парковка</label>
+                                <select class="form-control myInputHover"
+                                        #parking="ngModel" name="parking"
+                                        [(ngModel)]="filter.parking">
+                                    <option value="null" selected>Не выбрано</option>
+                                    <option value="Открытая">Открытая</option>
+                                    <option value="Закрытая">Закрытая</option>
+                                </select>
+                                <ul class="text-danger list-unstyled" 
+                                        *ngIf="(submitted || parking.dirty) && parking.invalid">
+                                    <li *ngFor="let error of getValidationMessages(parking, 'парковка')">
+                                        {{error}}
+                                    </li>
+                                </ul>
+                        </div>
+                        <div class="form-group col-md-4">
+                                <label class="text-success h5">Лифт</label>
+                                <select class="form-control myInputHover"
+                                        #elevator="ngModel" name="elevator"
+                                        [(ngModel)]="filter.elevator">
+                                    <option value="null" selected>Не выбрано</option>
+                                    <option value="Есть любой">Есть любой</option>
+                                    <option value="Грузовой">Есть грузовой</option>
+                                </select>
+                                <ul class="text-danger list-unstyled" 
+                                        *ngIf="(submitted || elevator.dirty) && elevator.invalid">
+                                    <li *ngFor="let error of getValidationMessages(elevator, 'лифт')">
+                                        {{error}}
+                                    </li>
+                                </ul>
+                        </div>
+                        <div class="form-group col-md-4">
+                                <label class="text-success h5">Срок аренды</label>
+                                <select class="form-control myInputHover"
+                                        #rentalPeriod ="ngModel" name="rentalPeriod"
+                                        [(ngModel)]="filter.rentalPeriod">
+                                    <option value="null" selected>Не выбрано</option>
+                                    <option value="Несколько месяцев">Несколько месяцев</option>
+                                    <option value="От года">От года</option>
+                                </select>
+                                <ul class="text-danger list-unstyled" 
+                                        *ngIf="(submitted || rentalPeriod.dirty) && rentalPeriod.invalid">
+                                    <li *ngFor="let error of getValidationMessages(rentalPeriod, 'срок аренды')">
+                                        {{error}}
+                                    </li>
+                                </ul>
+                        </div>
+                </div>
+
+                <div class="row">
+                        <div class="form-group col-md-6">
+                                <label class="myContainer text-success h5">Можно с детьми
+                                    <input type="checkbox" [(ngModel)]="filter.withKids" name="withKids">
+                                    <span class="checkmark"></span>
+                                </label>
+                        </div>
+                        <div class="form-group col-md-6">
+                                <label class="myContainer text-success h5">Можно с животными
+                                    <input type="checkbox" [(ngModel)]="filter.withAnimals" name="withAnimals">
+                                    <span class="checkmark"></span>
+                                </label>
+                        </div>
+                </div>
+
+                <div class="row">
+                        <div class="form-group col-md-6">
+                                <label class="text-success h5">Минимальная площадь</label>
+                                <input class="form-control myInputHover" #minArea="ngModel" name="minArea"
+                                    [(ngModel)]="filter.minArea" 
+                                    maxlength="4"
+                                    pattern="^[0-9\.]+$"/>
+                            
+                                <ul class="text-danger list-unstyled" 
+                                        *ngIf="(submitted || minArea.dirty) && minArea.invalid">
+                                    <li *ngFor="let error of getValidationMessages(minArea, 'мин. площадь')">
+                                        {{error}}
+                                    </li>
+                                </ul>
+                        </div>
+                        <div class="form-group col-md-6">
+                                <label class="text-success h5">Максимальная площадь</label>
+                                <input class="form-control myInputHover" #maxArea="ngModel" name="maxArea"
+                                    [(ngModel)]="filter.maxArea" 
+                                    maxlength="4"
+                                    pattern="^[0-9\.]+$"/>
+                            
+                                <ul class="text-danger list-unstyled" 
+                                        *ngIf="(submitted || maxArea.dirty) && maxArea.invalid">
+                                    <li *ngFor="let error of getValidationMessages(maxArea, 'макс. площадь')">
+                                        {{error}}
+                                    </li>
+                                </ul>
+                        </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="text-success h5">Электронная почта<sup>*</sup></label>
+                        <input class="form-control myInputHover" #emailAddress="ngModel" name="emailAddress" type="email" placeholder="Введите электронную почту"
+                                    [(ngModel)]="filter.emailAddress" 
+                                    required
+                                    minlength="10"
+                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"/>
+                                <ul class="text-danger list-unstyled" 
+                                        *ngIf="submitted && emailAddress.invalid">
+                                    <li *ngFor="let error of getValidationMessages(emailAddress, 'электронная почта')">
+                                        {{error}}
+                                    </li>
+                                </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-1 col-xl-3"></div>
+        </div>
+    </div>
+
+    <div class="text-xs-center">
+        <div class="col-xs-12">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                    <button class="btn btn-secondary m-b-1 myFormBtn" type="reset">
+                            <span class="h6">Очистить форму</span>
+                    </button>
+                    <button class="btn btn-primary m-b-1 myFormBtn" type="submit"
+                            [disabled]="submitted && form.invalid"
+                            [class.btn-secondary]="submitted && form.invalid">
+                        <span class="h6">Отправить форму</span>
+                    </button>
+                    <button class="btn btn-primary m-b-1 myFormBtn" type="button" routerLink="/database">
+                        <span class="h6">Показать объекты</span>
+                    </button>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</form>

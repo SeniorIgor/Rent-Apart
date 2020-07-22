@@ -1,0 +1,90 @@
+input.ng-dirty.ng-invalid { border: 2px solid #ff0000 }
+input.ng-dirty.ng-valid { border: 2px solid #6bc502 }
+
+.myContainer {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 19px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+    .myInputHover:hover {
+        border: 1px solid #2196F3;
+    }
+
+    /* .myLink {
+      color: white;
+    } */
+
+    /* .myLink:hover {
+      color: #ccc;
+    } */
+
+    /* .myHeaders{
+      font-size: 23px;
+      padding: 3px 0 0 0;
+      margin-right: 100px;
+      font-family: "Сomic Sans MS";
+    } */
+  
+  .myContainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  .buttonFontSize {
+    font-size: 18px;
+  }
+  
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 22px;
+    width: 22px;
+    border-radius: 4px;
+    border: 1px solid  #ccc;
+    /* background-color: #eee; */
+  }
+  
+  .myContainer:hover input ~ .checkmark {
+    background-color: #eee;
+    border: 1px solid  #2196F3;
+  }
+  
+  .myContainer input:checked ~ .checkmark {
+    background-color: #2196F3;
+    border: 0;
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  .myContainer input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  .myContainer .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 8px;
+    height: 13px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }

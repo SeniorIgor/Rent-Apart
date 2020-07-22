@@ -1,0 +1,102 @@
+<!-- <div class="navbar navbar-inverse bg-success">
+    <a class="myHeaders navbar-brand nav-link myLink" routerLink="/cart" href="">RENT APART</a>
+    <button class="btn pull-xs-right myLinks" routerLink="/store">
+        <span class="font-weight-bolder">НА СТРАНИЦУ ОБЪЯВЛЕНИЙ</span>
+    </button>
+</div> -->
+
+    <catalog-summary></catalog-summary>
+
+<div class="m-a-1">
+    <h2 class="text-xs-center text-primary">Избранные объявления</h2>
+
+    <div *ngIf="catalog.lines.length == 0" class="col-xs-12 p-a-1 m-t-1 alert alert-success" role="alert">
+            <h4 class="alert-heading">Нет избранных объявлений!</h4>
+            <p>Для добавления объявлений перейдите на страницу объявлений.</p>
+                <hr>
+            <p class="mb-0">Для перехода нажмите на кнопку 
+                <span class="font-weight-bold">"ОБЪЯВЛЕНИЯ"</span>.
+            </p>
+    </div>
+    <div class="col-xs-1"></div>
+    <div class="col-xs-10 p-a-1">
+            <!-- <div *ngFor="let advertisement of catalog.lines" class="card card-outline-primary">
+                <h4 class="card-header">
+                    {{advertisement.name}}
+                    <span class="pull-xs-right tag tag-pill tag-info">
+                        {{ advertisement.price | currency:"RUB":true:"2.2-2" }}
+                    </span>
+                </h4>
+                <div class="card-text p-a-1">
+                    <span class="">Адрес: {{advertisement.address}}</span>
+                    <span class="">Метро: {{advertisement.underground}}</span>
+                    <button class="btn btn-sm btn-danger pull-xs-right"
+                            (click)="catalog.removeLine(advertisement.id)">
+                        Удалить
+                    </button>
+                </div>
+            </div> -->
+        <div *ngFor="let advertisement of catalog.lines" class="card card-outline-primary">
+            <h4 class="card-header">
+                        <div class="row">
+                                <div class="col-lg-12 col-xl-9">
+                                        {{advertisement.name}}
+                                </div>
+                                <div class="col-lg-12 text-lg-left col-xl-3 myAdvertisement">
+                                    <span class="pull-xl-right tag tag-pill tag-info">
+                                        {{ advertisement.price | currency:"RUB":true:"2.2-2" }}
+                                    </span>
+                                </div>
+                        </div>
+    
+                            <!-- {{advertisement.name}}
+                        <span class="pull-xs-right tag tag-pill tag-info col-xs-12 col-lg-12 col-xl-2">
+                            {{ advertisement.price | currency:"RUB":true:"2.2-2" }}
+                        </span> -->
+                    </h4>
+                    <div class="row myImgRow">
+                        <div class="col-xs-12 col-lg-3 col-xl-3 myImgRow-imgBlock">
+                            <div class="myImgBlock">
+                                <img src="{{advertisement.src}}" class="" alt="...">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-lg-8 col-xl-8 myTextBlock">
+                                <div class="row">
+                                        <h5 class="col-xs-12 card-title myAdvertisement-title">{{advertisement.address}}</h5>
+                                        <div class="col-xs-12 col-xl-5 myAdvertisement-text">
+                                            <span>Метро: </span>
+                                            <span class="h6">{{advertisement.underground}}</span><br>
+                                            <span>Срок аренды: </span>
+                                            <span class="h6">{{advertisement.rent}}</span>
+                                        </div>
+                                        <div class="col-xs-12 col-xl-4 myAdvertisement-text">
+                                            <span>Площадь квартиры: </span>
+                                            <span class="h6">{{advertisement.areaFlat}}</span><br>
+                                            <span>Ремонт: </span>
+                                            <span class="h6">{{advertisement.repairs}}</span>
+                                        </div>
+                                        <div class="col-xs-12 col-xl-3 myAdvertisement-text">
+                                            <span>Парковка: </span>
+                                            <span class="h6">{{advertisement.parking}}</span>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="col-xs-12 myTextContainer">
+                            <span class="">{{advertisement.description}}</span>
+                        </div>
+                        <button class="btn btn-sm btn-danger myBtn myBtn-block pull-xs-right"
+                                (click)="catalog.removeLine(advertisement.id)">
+                            <span class="h6">Удалить</span>
+                        </button>
+        </div>
+    </div>
+    <div class="col-xs-1"></div>
+
+</div>
+<!-- <div class="text-xs">
+    
+    <button class="btn btn-secondary" routerLink="/filter"
+        [disabled]="catalog.lines.length == 0">
+    Checkout
+</button>
+</div> -->

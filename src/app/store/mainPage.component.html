@@ -1,0 +1,75 @@
+<div class="d-block p-1 m-b-1">
+    <hr class="line">
+    <a class="myMainHeader navbar-brand nav-link" routerLink="/main" href="">RENT APART</a>
+    <div class="col-xs-3 col-md-5 col-lg-8 p-l-0 m-b-1">
+            <a class="btn myMainLinks" routerLink="/main" href="">ГЛАВНАЯ</a>
+            <a class="btn myMainLinks" routerLink="/store" href="">ОБЯВЛЕНИЯ</a>
+            <a class="btn myMainLinks" routerLink="/filter" href="">ФОРМА</a>
+            <a class="btn myMainLinks" routerLink="/catalog" href="">ИЗБРАННЫЕ ОБЪЯВЛЕНИЯ
+                <span *ngIf="catalog.itemCount > 0">
+                        {{ catalog.itemCount }}
+                </span>
+            </a>
+            <a class="btn myMainLinks" routerLink="/question" href="">ВОПРОСЫ РИЭЛТОРУ</a>
+    </div>
+    <!-- <button class="btn myMainLinks" routerLink="/store">
+        <span class="font-weight-bolder">КАТАЛОГ</span>
+    </button> -->
+    <!-- <button class="btn btn-secondary text-primary" type="button" routerLink="/cart">RENT APART</button> -->
+</div>
+
+<div class="row">
+    <img src="./../../../mainPage.jpg" class="d-block w-100" alt="...">
+</div>
+
+<div class="row">
+    <div class="col-sm-12 col-md- col-lg-12">
+        <div class="row">
+
+                <div class="col-md-0 col-lg-0 col-xl-1"></div>
+                <div class="col-md-12 col-lg-6 text-xs-center text-md-center text-lg-center col-xl-3 text-xl-left m-t-1">
+                    <span class="myMainText">АРЕНДА НЕДВИЖИМОСТИ</span>
+                    <div class="myBlock">
+                        <p class="myBlock_myText">
+                            Аренда 4-комн. квартир посуточно
+                        </p>
+                        <p class="myBlock_myText">
+                            Аренда больших квартир
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-0 col-lg-0 col-xl-1"></div>
+                <div class="col-xs-12 text-xs-center col-md-12 text-md-center col-lg-6 mr-lg-0 text-lg-center col-xl-2 text-xl-left m-t-1 myMainBlock">
+                    <span class="myMainText">RENT-APART.RU</span>
+                    <div class="myBlock">
+                        <p class="myBlock_myText">
+                            Продвижение
+                        </p>
+                        <p class="myBlock_myText">
+                            Премиум-размещение
+                        </p>
+                    </div>
+        
+                </div>
+                <div class="col-md-0 col-lg-0 col-xl-1"></div>
+                <div class="col-xs-12 m-t-1 col-md-12 m-t-1 col-lg-12 text-xs-center text-md-center text-lg-center col-xl-3 text-xl-left">
+                    <span class="myMainText">КОНТАКТЫ</span>
+                    <div class="myBlock">
+                        <p class="myBlock_myText">
+                            Связь с администрацией:
+                        </p>
+                        <p class="myBlock_myText myBlock_myLink">
+                            feedback@rent-apart.ru
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-0 col-lg-0 col-xl-1"></div>
+        </div>
+    </div>
+</div>
+
+<hr class="line">
+
+<!-- <div class="mainBlock">
+    <img src="./../../../mainPage.jpg" class="d-block w-100" alt="...">
+</div> -->

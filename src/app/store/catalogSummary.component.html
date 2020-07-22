@@ -1,0 +1,23 @@
+<div class="navbar navbar-inverse bg-success">
+        <!-- <a class="myHeaders navbar-brand nav-link myLink" routerLink="/main" href="">RENT APART</a> -->
+        <a class="myHeader navbar-brand nav-link" routerLink="/main" href="">RENT APART</a>
+        <div class="col-xs-3 col-md-6 col-lg-8 p-l-0">
+                <a class="btn myLinks" routerLink="/main" href="">ГЛАВНАЯ</a>
+                <a class="btn myLinks" routerLink="/store" href="">ОБЯВЛЕНИЯ</a>
+                <a class="btn myLinks" routerLink="/filter" href="">ФОРМА</a>
+                <a class="btn myLinks" routerLink="/catalog" href="">ИЗБРАННЫЕ ОБЪЯВЛЕНИЯ
+                    <span *ngIf="catalog.itemCount > 0">
+                            {{ catalog.itemCount }}
+                    </span>
+                </a>
+                <a class="btn myLinks" routerLink="/question" href="">ВОПРОСЫ РИЭЛТОРУ</a>
+        </div>
+</div>
+    
+    <!-- <button type="button" class="btn btn-success" [disabled]="catalog.itemCount == 0"
+                          routerLink="/catalog">
+        <span class="font-weight-bolder">ИЗБРАННЫЕ ОБЪЯЛЕНИЯ</span>
+        <span *ngIf="catalog.itemCount > 0">
+                        {{ catalog.itemCount }}
+        </span>
+    </button> -->

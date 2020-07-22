@@ -1,0 +1,94 @@
+<!-- <div class="navbar navbar-inverse bg-success">
+    <a class="myHeaders navbar-brand nav-link myLink" routerLink="/cart" href="">RENT APART</a>
+    <button class="btn myLinks" routerLink="/store">
+        <span class="font-weight-bolder">КАТАЛОГ</span>
+    </button>
+    <!-- <button class="btn btn-secondary text-primary" type="button" routerLink="/cart">RENT APART</button> -->
+<!-- </div> -->
+<catalog-summary></catalog-summary>
+
+<div *ngIf="filters.length <= 0" class="col-xs-12 p-a-1 m-t-1 alert alert-success" role="alert">
+        <h4 class="alert-heading">База данных пуста!</h4>
+        <p>Для добавления фильтров заполните форму</p>
+            <hr>
+        <!-- <p class="mb-0">Мы свяжемся с вами и предложим наши лучшие варианты</p> -->
+
+        <button class="btn btn-success" routerLink="/filter">Вернуться к форме</button>
+</div>
+
+<div *ngIf="filters.length > 0" class="m-a-1">
+
+<div class="row">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-10 p-a-1">
+        <div *ngFor="let filter of filters" class="card card-outline-primary">
+                <h4 class="card-header">
+                        <div class="row">
+                                <div class="col-xs-12 col-md-9">
+                                    {{filter.category}}
+                                </div>
+                                <div class="col-xs-12 text-xs-left col-md-3 myFilter">
+                                    <span class="pull-md-right tag tag-pill tag-info">
+                                        {{ filter.minPrice | currency:"RUB":true:"2.2-2"}} – {{ filter.maxPrice | currency:"RUB":true:"2.2-2"}}
+                                    </span>
+                                </div>
+                        </div>    
+                </h4>
+
+
+                <!-- <h4 class="card-header">
+                        {{filter.category}}
+                    <span class="pull-xs-right tag tag-pill tag-info">
+                        {{ filter.minPrice | currency:"RUB":true:"2.2-2"}} – {{ filter.maxPrice | currency:"RUB":true:"2.2-2"}}
+                    </span>
+                </h4> -->
+
+                <div class="row m-x-0">
+                        <h4 class="text-xs-center text-success">{{filter.city}}</h4>
+                        <div class="row m-x-0 m-t-2 m-b-1">
+                            <div class="col-xl-4">
+                                <span>Метро: </span>
+                                <span class="h6">{{filter.undeground}}</span><br>
+                                <span>Срок аренды: </span>
+                                <span class="h6">{{filter.rentalPeriod}}</span><br>
+                                <span>Площадь квартиры: </span>
+                                <span class="h6">{{filter.minArea}}</span> – <span class="h6">{{filter.maxArea}}</span>
+                            </div>
+                            <div class="col-xl-3">
+                                <span>Лифт: </span>
+                                <span class="h6">{{filter.elevator}}</span><br>
+                                <span>Парковка: </span>
+                                <span class="h6">{{filter.parking}}</span><br>
+                                <span>Ремонт: </span>
+                                <span class="h6">{{filter.repairs}}</span>
+                            </div>
+                            <div class="col-xl-5">
+                                <span>Email: </span>
+                                <span class="h6">{{filter.emailAddress}}</span><br>
+                                <span>Можно с детьми: </span>
+                                <span class="h6">{{filter.withKids}}</span><br>
+                                <span>Можно с животными: </span>
+                                <span class="h6">{{filter.withAnimals}}</span>
+
+                                <button class="btn btn-sm btn-danger myBtn pull-xs-right m-b-0"
+                                        (click)="deleteRow(filter.id)">
+                                    <span class="h6">Удалить</span>
+                                </button>
+                            </div>
+
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div class="col-xs-1"></div>
+
+</div>
+
+<div class="text-xs-center">
+    <button class="btn btn-md btn-danger"
+            (click)="deleteAllRows()">
+        <span class="h6">Удалить таблицу</span>
+    </button>    
+</div>
+
+</div>

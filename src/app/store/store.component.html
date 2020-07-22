@@ -1,0 +1,142 @@
+
+    <!-- <a class="myHeaders navbar-brand nav-link myLink" routerLink="/main" href="">RENT APART</a> -->
+    <catalog-summary></catalog-summary>
+
+<div class="col-xs-3 p-a-1">
+        <button class="btn btn-block btn-outline-primary" (click)="changeCategory()">
+            Все
+        </button>
+        <button *ngFor="let cat of categories" class="btn btn-outline-primary
+                                                      btn-block"
+                    [class.active]="cat == selectedCategory" (click)="changeCategory(cat)">
+                {{cat}}
+        </button>
+</div>
+
+<div class="col-xs-9 p-a-1">
+    <div *ngFor="let advertisement of advertisements" class="card card-outline-primary">
+                <h4 class="card-header">
+                    <div class="row">
+                            <div class="col-lg-12 col-xl-9">
+                                    {{advertisement.name}}
+                            </div>
+                            <div class="col-lg-12 text-lg-left col-xl-3 myAdvertisement">
+                                <span class="pull-xl-right tag tag-pill tag-info">
+                                    {{ advertisement.price | currency:"RUB":true:"2.2-2" }}
+                                </span>
+                            </div>
+                    </div>
+
+                        <!-- {{advertisement.name}}
+                    <span class="pull-xs-right tag tag-pill tag-info col-xs-12 col-lg-12 col-xl-2">
+                        {{ advertisement.price | currency:"RUB":true:"2.2-2" }}
+                    </span> -->
+                </h4>
+                <div class="row myImgRow">
+                    <div class="col-xs-12 col-lg-3 col-xl-3 myImgRow-imgBlock">
+                        <div class="myImgBlock">
+                            <img src="{{advertisement.src}}" class="" alt="...">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-lg-8 col-xl-8 myTextBlock">
+                            <div class="row">
+                                    <h5 class="col-xs-12 card-title myAdvertisement-title">{{advertisement.address}}</h5>
+                                    <div class="col-xs-12 col-xl-5 myAdvertisement-text">
+                                        <span>Метро: </span>
+                                        <span class="h6">{{advertisement.underground}}</span><br>
+                                        <span>Срок аренды: </span>
+                                        <span class="h6">{{advertisement.rent}}</span>
+                                    </div>
+                                    <div class="col-xs-12 col-xl-4 myAdvertisement-text">
+                                        <span>Площадь квартиры: </span>
+                                        <span class="h6">{{advertisement.areaFlat}}</span><br>
+                                        <span>Ремонт: </span>
+                                        <span class="h6">{{advertisement.repairs}}</span>
+                                    </div>
+                                    <div class="col-xs-12 col-xl-3 myAdvertisement-text">
+                                        <span>Парковка: </span>
+                                        <span class="h6">{{advertisement.parking}}</span>
+                                    </div>
+                            </div>
+                    </div>
+                    <div class="col-xs-12 myTextContainer">
+                        <span class="">{{advertisement.description}}</span>
+                    </div>
+                    <button *ngIf="!isFavourits(advertisement)" class="btn btn-outline-success btn-sm myBtn myBtn-success pull-xs-right myBtn-block"
+                            (click)="addAdvertisementToCatalog(advertisement)">
+                        <span class="h6">в избранное</span>
+                    </button>
+                    <button *ngIf="isFavourits(advertisement)" class="btn btn-light btn-sm myBtn pull-xs-right myBtn-block"
+                            (click)="addAdvertisementToCatalog(advertisement)">
+                        <span class="h6">в избранном</span>
+                    </button>
+            </div>
+    </div>
+
+    <!-- <div class="card border-success mb-3" style="max-width: 18rem;">
+            <div class="card-header">Header</div>
+            <div class="card-body text-success">
+              <h5 class="card-title">Success card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div> -->
+
+    <div class="form-inline pull-xs-left m-r-1">
+        <select class="form-control" [value]="advertisementsPerPage"
+                (change)="changePageSize($event.target.value)">
+            <option value="3">3 per Page</option>
+            <option value="4">4 per Page</option>
+            <option value="6">6 per Page</option>
+            <option value="8">8 per Page</option>
+        </select>
+    </div>
+
+    <div class="btn-group pull-xs-right">
+            <button *counter="let page of pageCount" (click)="changePage(page)"
+            class="btn btn-outline-primary" [class.active]="page == selectedPage">
+                {{page}}
+        </button>
+    </div>
+</div>
+
+
+
+<!-- <div class="row myImgRow">
+        <div class="col-md-12 col-lg-4 myImgBlock">
+            <img src="{{advertisement.src}}" class="" alt="...">
+        </div>
+        <div class="col-xs-12 col-lg-9 myTextBlock">
+            <h5 class="card-title">{{advertisement.address}}</h5>
+            <div class="row">
+                <div class="col-md-5">
+                    <span>Метро: </span>
+                    <span class="h6">{{advertisement.underground}}</span><br>
+                    <span>Срок аренды: </span>
+                    <span class="h6">{{advertisement.rent}}</span>
+                </div>
+                <div class="col-md-4">
+                    <span>Площадь квартиры: </span>
+                    <span class="h6">{{advertisement.areaFlat}}</span><br>
+                    <span>Ремонт: </span>
+                    <span class="h6">{{advertisement.repairs}}</span>
+                </div>
+                <div class="col-md-3">
+                    <span>Парковка: </span>
+                    <span class="h6">{{advertisement.parking}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 myTextContainer">
+                    <span class="">{{advertisement.description}}</span>
+                </div>
+            </div>
+            <button *ngIf="!isFavourits(advertisement)" class="btn btn-outline-success btn-sm myBtn myBtn-success pull-xs-right"
+                    (click)="addAdvertisementToCatalog(advertisement)">
+                <span class="h6">в избранное</span>
+            </button>
+            <button *ngIf="isFavourits(advertisement)" class="btn btn-light btn-sm myBtn pull-xs-right"
+                    (click)="addAdvertisementToCatalog(advertisement)">
+                <span class="h6">в избранном</span>
+            </button>
+        </div>
+    </div> -->
