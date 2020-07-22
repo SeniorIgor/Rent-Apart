@@ -1,4 +1,4 @@
-# RENT-APART
+> # RENT-APART
 
 ![main-page](https://github.com/SeniorIgor/Rent-Apart/blob/master/main-page-for-readme.png)
 
