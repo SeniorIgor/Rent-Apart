@@ -1,6 +1,6 @@
 # Rent-Apart
 
-A web application prototype for browsing and renting apartments, built with **Angular 1** on the frontend and a lightweight **Express/JSON-Server** backend. The project demonstrates routing, forms, authentication middleware, and mock API integration.
+A web application prototype for browsing and renting apartments, built with **Angular 4** on the frontend and a lightweight **Express/JSON-Server** backend. The project demonstrates routing, forms, authentication middleware, and mock API integration.
 
 ![main-page](https://github.com/SeniorIgor/Rent-Apart/blob/master/main-page-for-readme.png)
 
@@ -46,8 +46,6 @@ authMiddleware.js   # JWT auth simulation for json-server
 
 ## Setup
 
-**Requirements:** Node 14, npm 6
-
 ```bash
 # install dependencies
 npm install
@@ -65,9 +63,8 @@ Frontend requests are proxied to the backend during development.
 
 ## Example API (Mock Backend)
 
-- `POST /login` → returns JWT token (mock auth)
-- `GET /advertisements`
-- `POST /filters`
+- `GET /advertisements` → returns apartment advertisements
+- `POST /filters` → apply filters to listings
 
 ---
 
@@ -77,6 +74,7 @@ Frontend requests are proxied to the backend during development.
 - Implemented a **mock backend** with Express and json-server to simulate real APIs.
 - Gained experience with **JWT authentication flow** and middleware integration.
 - Improved skills in **responsive UI design** with Bootstrap and Font Awesome.
+- Learned how to prototype real-world applications with mock APIs, a step toward implementing a full database-backed system.
 
 ---
 
