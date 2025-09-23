@@ -1,82 +1,106 @@
-# Rent-Apart
+# Rent‑Apart
 
-A web application prototype for browsing and renting apartments, built with **Angular 1** on the frontend and a lightweight **Express/JSON-Server** backend. The project demonstrates routing, forms, authentication middleware, and mock API integration.
+A small **single‑page web app** for browsing and “renting” apartments. The project demonstrates **Angular (v4)** fundamentals (modules, routing, forms, services, guards) and a **mock REST API** built with **Express + json‑server** to simulate a full‑stack workflow.
 
-![main-page](https://github.com/SeniorIgor/Rent-Apart/blob/master/main-page-for-readme.png)
+![main-page](/screenshots/main-page.webp)
+
+---
+
+## Overview
+
+Rent‑Apart lets users browse apartment listings, filter/search by criteria, and view details. It’s designed as a compact practice project to exercise SPA patterns, client–server integration, and basic UX with responsive styling.
 
 ---
 
 ## Features
 
 - Apartment catalog with listings and filtering
-- User registration and login (with JWT mock authentication)
-- Routing with Angular Router (multiple pages, guarded routes)
+- Viewing details for a specific apartment
+- Routing with Angular Router
 - Form handling and validation (Angular Forms)
-- Mock backend using **json-server** with custom authentication middleware
+- Mock backend using **json-server**
 - Responsive UI with **Bootstrap** and **Font Awesome**
 
 ---
 
 ## Tech Stack
 
-**Frontend (Angular 4)**
-
-- Angular Core, Forms, Router, HTTP
-- RxJS for reactive programming
-- Bootstrap 4 (alpha) + Font Awesome for styling
-- Zone.js and Core-js for browser compatibility
-
-**Backend / Mock API**
-
-- Express.js + json-server
-- JWT-based auth via custom middleware (`authMiddleware.js`)
-- CORS and body-parser for request handling
+- **Front-end:** Angular (v4), Angular Router, Angular Forms, RxJS
+- **Styling/UI:** Bootstrap 4, Font Awesome
+- **Backend (mock):** json-server
+- **Tooling:** TypeScript, Angular CLI, TSLint
 
 ---
 
-## Project Structure
+## Project structure
 
 ```
-src/                # Angular app (components, services, routes)
-data.js             # Mock data for json-server
-authMiddleware.js   # JWT auth simulation for json-server
+root/
+├─ src/                      # Angular app (components, services, routes, guards)
+├─ data.js                   # Seed data: users, apartment listings, etc.
+├─ .angular-cli.json         # Angular CLI v1 config
+├─ tsconfig.json             # TypeScript configuration
+├─ tslint.json               # Lint rules
+└─ package.json              # Dependencies + npm scripts
 ```
 
 ---
 
-## Setup
+## Getting started
 
-**Requirements:** Node 14, npm 6
+### Prerequisites
+
+This project was created with **Angular CLI 1.x** and **Angular 4**. For best results, use Node **12.x** and npm **6+**.
 
 ```bash
-# install dependencies
-npm install
-
-# start Angular frontend
-npm start   # runs on :4200
-
-# start mock backend (json-server with auth)
-npm run json   # runs on :3500
+# Optional: align Node with nvm
+nvm install 12
+nvm use 12
 ```
 
-Frontend requests are proxied to the backend during development.
+### Install & run
+
+```bash
+# 1) Install dependencies
+npm install
+
+# 2) Start Angular dev server (http://localhost:4200)
+npm start
+
+# 3) Start the mock API (http://localhost:3500)
+npm run json
+```
 
 ---
 
-## Example API (Mock Backend)
+## Scripts
 
-- `POST /login` → returns JWT token (mock auth)
-- `GET /advertisements`
-- `POST /filters`
+| Script          | Description                                                |
+| --------------- | ---------------------------------------------------------- |
+| `npm start`     | Runs Angular dev server on **:4200**                       |
+| `npm run json`  | Starts mock backend (json‑server via Express) on **:3500** |
+| `npm run build` | Production build to `dist/`                                |
+| `npm run lint`  | Lint with TSLint                                           |
 
 ---
 
-## Learning Outcomes
+## API Endpoints
 
-- Practiced building a **single-page application** with Angular (routing, forms, services).
-- Implemented a **mock backend** with Express and json-server to simulate real APIs.
-- Gained experience with **JWT authentication flow** and middleware integration.
-- Improved skills in **responsive UI design** with Bootstrap and Font Awesome.
+| Method                | Path | Description                                    |
+| --------------------- | ---- | ---------------------------------------------- |
+| `GET /advertisements` | —    | Returns list of apartment listings             |
+| `POST /filters`       | —    | Accepts filter criteria, returns filtered list |
+
+The seed data for users & listings is stored in `data.js`.
+
+---
+
+## Engineering notes
+
+- **Data flow**: services encapsulate HTTP; components subscribe via RxJS for reactive updates.
+- **Routing & guards**: example of protecting routes and lazy navigation.
+- **Forms**: Angular Forms with synchronous validation examples.
+- **Styling**: Bootstrap utility classes + Font Awesome for simple, responsive UI.
 
 ---
 
